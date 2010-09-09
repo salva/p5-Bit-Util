@@ -1,0 +1,8 @@
+Changes
+Makefile.PL
+MANIFEST
+ppport.h
+README
+Util.xs
+t/Bit-Util.t
+lib/Bit/Util.pm
