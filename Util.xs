@@ -24,7 +24,7 @@ bu_first(pTHX_ SV *bv, IV start) {
         if (byte = bytes[byte_ix]) {
             while (bit_ix < 8) {
                 if ((byte >> bit_ix) & 1)
-                    return byte * 8 + bit_ix;
+                    return byte_ix * 8 + bit_ix;
                 bit_ix++;
             }
         }
@@ -54,7 +54,7 @@ bu_last(pTHX_ SV *bv, IV end) {
         if (byte = bytes[byte_ix]) {
             while (bit_ix >= 0) {
                 if ((byte >> bit_ix) & 1)
-                    return byte * 8 + bit_ix;
+                    return byte_ix * 8 + bit_ix;
                 bit_ix--;
             }
         }
