@@ -8,62 +8,74 @@ use warnings;
 require Exporter;
 our @ISA = qw(Exporter);
 
-our @EXPORT_OK = qw(bu_first bu_last);
-
+our @EXPORT_OK = qw(bu_first bu_last bu_count);
 
 require XSLoader;
 XSLoader::load('Bit::Util', $VERSION);
 
-
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
-Bit::Util - Perl extension for blah blah blah
+Bit::Util - Utility subroutines for bit-vector manipulation
 
 =head1 SYNOPSIS
 
-  use Bit::Util;
-  blah blah blah
+  use Bit::Util qw(bu_count bu_last bu_first);
+
+  my $vec = "foobardoz";
+
+  my $cnt = bu_count($vec);
+  my $first = bu_first($vec);
+  my $last = bu_last($vec);
 
 =head1 DESCRIPTION
 
-Stub documentation for Bit::Util, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+This module provides some utility methods for bit-vector handling.
 
-Blah blah blah.
+It is writting in XS and so its aim is to be very fast.
 
-=head2 EXPORT
+=head2 EXPORTABLE FUNCTIONS
 
-None by default.
+=over 4
 
+=item bu_count($vec [, $start [, $end]])
 
+Counts the number of bits set in the bit-vector.
+
+C<$start> and C<$end>, when given, allows to select a sub range of
+bits inside the bit-vector. The bits at offsets bigger or equal than
+C<$start> and smaller than C<$end> will be counted.
+
+=item bu_first($vec [, $start])
+
+Returns the index of the first bit set in the bit-vector.
+
+If C<$start> is given it will start the search at the given index.
+
+=item bu_last($vec [, $end])
+
+Returns the index of the last bit set in the bit-vector.
+
+If C<$end> is given it will start the search at the given index.
+
+=back
 
 =head1 SEE ALSO
 
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
-
-If you have a mailing list set up for your module, mention it here.
-
-If you have a web site set up for your module, mention it here.
+L<perlfunc/vec>
 
 =head1 AUTHOR
 
-Salvador Fandino, E<lt>salva@E<gt>
+Salvador Fandino
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2010 by Salvador Fandino
+Copyright (C) 2010 by Salvador Fandino, E<lt>sfandino@yahoo.comE<gt>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.10.1 or,
+it under the same terms as Perl itself, either Perl version 5.10.0 or,
 at your option, any later version of Perl 5 you may have available.
-
 
 =cut
