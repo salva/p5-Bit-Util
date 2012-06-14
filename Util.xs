@@ -99,7 +99,7 @@ bu_last(pTHX_ SV *bv, SV *end_sv) {
 static IV
 bu_count(pTHX_ SV *bv, SV *start_sv, SV *end_sv) {
     STRLEN len;
-    const char *bytes = SvPV_const(bv, len);
+    const unsigned char *bytes = SvPV_const(bv, len);
     IV start;
     IV end;
     IV byte_ix;
